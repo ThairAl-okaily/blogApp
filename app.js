@@ -8,7 +8,7 @@ const express = require("express"),
 
 
 //app config 
-mongoose.connect("mongodb://localhost/restfull_blog_app", {useNewUrlParser: true});
+mongoose.connect("mongodb://localhost/blog_app", {useNewUrlParser: true});
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
@@ -17,7 +17,7 @@ app.use(express.static("public"));
 
 
 //SCHEMA , mongoose/model config
-const blogSchema = new mongoose.Schema({
+var blogSchema = new mongoose.Schema({
     title: String,
     image: String,
     body: String,
@@ -34,7 +34,15 @@ const Blog = mongoose.model("Blog", blogSchema);
 //     title: "test blog",
 //     image: "https://unsplash.com/photos/ukzHlkoz1IE",
 //     body: "Hello this is blog post "
-// });
+// }, function (err, Tott){
+//             if(err){
+//                 console.log(err);
+//             }
+//             else {
+//                 console.log("NEWLY CREATED Tott");
+//                 console.log(Tott);
+//             }
+//  });
  
 
 //RESTful routs 
@@ -49,7 +57,7 @@ app.get("/blogs", (req, res) =>{
             console.log(err);
         }
         else {
-            res.render("index", {blogs: blogs});
+            res.render("index", {blogs: Blogs});
         }
     });
 });

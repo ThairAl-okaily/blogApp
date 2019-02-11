@@ -1,1 +1,13 @@
 <h1>index page is here </h1>
+
+
+<% blogs.forEach( function (blogs){ %>
+    <div>
+        <h2><%= blogs.title %></h2>
+        <img src="<%= blogs.image %>" alt="">
+        <span><%= blogs.created %></span>
+        <p><%= blogs.body %></p>
+    </div>
+<% }) %>
+
+
