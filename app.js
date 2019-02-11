@@ -17,7 +17,7 @@ app.use(express.static("public"));
 
 
 //SCHEMA , mongoose/model config
-let blogSchema = new mongoose.Schema({
+const blogSchema = new mongoose.Schema({
     title: String,
     image: String,
     body: String,
@@ -28,12 +28,31 @@ let blogSchema = new mongoose.Schema({
         }
 
 });
-let Blog = mongoose.model(Blog, blogSchema);
+const Blog = mongoose.model("Blog", blogSchema);
+
+// Blog.create({
+//     title: "test blog",
+//     image: "https://unsplash.com/photos/ukzHlkoz1IE",
+//     body: "Hello this is blog post "
+// });
  
 
 //RESTful routs 
+app.get("/", (req, res) =>{
+    res.redirect("/blogs");
+});
 
 
+app.get("/blogs", (req, res) =>{
+    Blog.find({}, (err, Blogs) => {
+        if(err) {
+            console.log(err);
+        }
+        else {
+            res.render("index", {blogs: blogs});
+        }
+    });
+});
 
 
 
