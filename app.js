@@ -94,6 +94,7 @@ app.get("/blogs/:id/edit", (req, res) => {
 
 // UPDATE ROUT 
 app.put("/blogs/:id", (req, res) => {
+    req.body.blog.body = req.sanitize(req.body.blog.body);
     Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, ubdatedOne) => {
         if(err) {
             res.redirect("/blogs");
