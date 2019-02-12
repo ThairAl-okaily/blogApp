@@ -117,6 +117,23 @@ app.get("/blogs/:id", (req, res) =>{
     });
 });
 
+
+//delet rout
+app.delete("/blogs/:id", (req, res) =>{
+    Blog.findByIdAndRemove(req.params.id, err => {
+        if(err) {
+            console.log(err);
+        }
+        else {
+            res.redirect("/blogs")
+        }
+    });
+});
+
+
+
+
+
 // node server
 const http = require('http');
 const port = 4000;
