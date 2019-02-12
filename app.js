@@ -35,7 +35,7 @@ const Blog = mongoose.model("Blog", blogSchema);
 
 // Blog.create({
 //     title: "test blog",
-//     image: "https://unsplash.com/photos/ukzHlkoz1IE",
+//     image: "https://assets.wordpress.envato-static.com/uploads/2017/08/tropical-PS53BSA.jpg",
 //     body: "Hello this is blog post "
 // }, function (err, Tott){
 //             if(err){
