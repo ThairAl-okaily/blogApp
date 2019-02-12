@@ -2,6 +2,7 @@
 
 const express = require("express"),
       mongoose = require("mongoose"),
+      expressSanitizer = require("express-sanitizer"),
       methodOveride = require("method-override"),
       bodyParser = require("body-parser"),
       app = express();
@@ -14,6 +15,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.use(methodOveride("_method"));
+app.use(expressSanitizer());
 
 
 
@@ -125,7 +127,7 @@ app.delete("/blogs/:id", (req, res) =>{
             console.log(err);
         }
         else {
-            res.redirect("/blogs")
+            res.redirect("/blogs");
         }
     });
 });
