@@ -62,7 +62,7 @@ app.get("/blogs", (req, res) =>{
     });
 });
 
-app.get("/new", (req, res) =>{
+app.get("/blogs/new", (req, res) =>{
     res.render("new");
 });
 
@@ -77,6 +77,18 @@ app.post("/blogs", (req, res) => {
     });
 });
 
+
+//show rout
+app.get("/blogs/:id", (req, res) =>{
+    Blog.findById(req.params.id, (err, foundBog) => {
+        if(err) {
+            res.redirect("/blogs");
+        }
+        else {
+            res.render("show", {blog: foundBog});
+        }
+    });
+});
 
 // node server
 const http = require('http');
