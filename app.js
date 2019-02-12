@@ -66,7 +66,16 @@ app.get("/new", (req, res) =>{
     res.render("new");
 });
 
-
+app.post("/blogs", (req, res) => {
+    Blog.create(req.body.blog, (err, newBlog) => {
+        if(err) {
+            console.log(err);
+        } 
+        else {
+            res.redirect("/blogs");
+        }
+    });
+});
 
 
 // node server
