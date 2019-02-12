@@ -2,6 +2,7 @@
 
 const express = require("express"),
       mongoose = require("mongoose"),
+      methodOveride = require("method-override"),
       bodyParser = require("body-parser"),
       app = express();
 
@@ -12,7 +13,7 @@ mongoose.connect("mongodb://localhost/blog_app", {useNewUrlParser: true});
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
-
+app.use(methodOveride("_method"));
 
 
 
@@ -91,7 +92,14 @@ app.get("/blogs/:id/edit", (req, res) => {
 
 // UPDATE ROUT 
 app.put("/blogs/:id", (req, res) => {
-    res.send("update route");
+    Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, ubdatedOne) => {
+        if(err) {
+            res.redirect("/blogs");
+        } 
+        else {
+            res.redirect("/blogs/" + req.params.id );
+        }
+    });
 });
 
 
