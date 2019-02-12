@@ -77,6 +77,25 @@ app.post("/blogs", (req, res) => {
     });
 });
 
+//EDIT ROUT 
+app.get("/blogs/:id/edit", (req, res) => {
+    Blog.findById(req.params.id, (err, foundBlog) => {
+        if(err) {
+            res.redirect("/");
+        } 
+        else {
+            res.render("edit", {blog: foundBlog});
+        }
+    });
+});
+
+// UPDATE ROUT 
+app.put("/blogs/:id", (req, res) => {
+    res.send("update route");
+});
+
+
+
 
 //show rout
 app.get("/blogs/:id", (req, res) =>{
